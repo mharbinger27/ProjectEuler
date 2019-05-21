@@ -8,6 +8,25 @@ namespace ProjectEuler
     {
         public static bool EvaluatePrime(long numberToEvaluate)
         {
+            if (numberToEvaluate < 2)
+            {
+                return false;
+            }
+
+            switch (numberToEvaluate)
+            {
+                case 3:
+                    return true;
+                case 5:
+                    return true;
+                case 7:
+                    return true;
+                case 9:
+                    return false;
+                default:
+                    break;
+            }
+
             bool isPrimeNumber = true;
 
             for (long i = 3; i <= Math.Sqrt(numberToEvaluate); i += 2)
