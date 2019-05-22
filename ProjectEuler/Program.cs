@@ -17,6 +17,7 @@ namespace ProjectEuler
             //Launcher.Launch(009);
             //Launcher.Launch(010);
             Launcher.Launch(011);
+            //Launcher.Launch(012);
         }
     }
 }
