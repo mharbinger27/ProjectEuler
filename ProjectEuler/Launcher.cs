@@ -52,6 +52,9 @@ namespace ProjectEuler
                 case 014:
                     _014.DoWork(1000000);
                     break;
+                case 015:
+                    _015.DoWork(20);
+                    break;
                 default:
                     break;
             }

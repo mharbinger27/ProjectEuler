@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProjectEuler
 {
@@ -23,42 +23,56 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
-            int startingNumber = 0;
-            int changingNumber = 0;
-            int chainLength = 0;
-            int n;
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
+            int changingNumber;
+            int longestChain = 0;
+            int startingNumberWithLongestChain = 1;
+            int recordedChainLength = 0;
 
             Dictionary<int, int> calculatedValues = new Dictionary<int, int>();
 
-            for (int i = 2; i < int.MaxValue; i++)
+            for (int startingNumber = 2; startingNumber < limit; startingNumber++)
             {
-                startingNumber = i;
-                changingNumber = 1;
+                changingNumber = startingNumber;
 
-                for (int j = 1; j < int.MaxValue; j ++)
+                for (int chainLength = 0; chainLength < int.MaxValue; chainLength++)
                 {
-                    if (calculatedValues.ContainsKey(i))
+                    if (changingNumber == 1)
                     {
-                        int existingKey = ;
-                        int existingValue = ;
-                    }
+                        calculatedValues.Add(startingNumber, chainLength);
 
-                    else if (changingNumber == 1)
-                    {
-
-
-                        calculatedValues.Add(i, j);
-
-                        if (j > chainLength)
+                        if (chainLength > longestChain)
                         {
-                            startingNumber = i;
-                            chainLength = j;
+                            startingNumberWithLongestChain = startingNumber;
+                            longestChain = chainLength;
                         }
                         break;
                     }
                     else if (changingNumber % 2 == 0)
                     {
                         changingNumber /= 2;
+
+                        if (changingNumber < startingNumber)
+                        {
+                            calculatedValues.TryGetValue(changingNumber, out recordedChainLength);
+
+                            if (recordedChainLength != 0)
+                            {
+                                int newKey = startingNumber;
+                                int newValue = chainLength + recordedChainLength + 1;
+
+                                if (newValue > longestChain)
+                                {
+                                    longestChain = newValue;
+                                    startingNumberWithLongestChain = startingNumber;
+                                }
+
+                                calculatedValues.Add(newKey, newValue);
+                                break;
+                            }
+                        }                                               
                     }
                     else
                     {
@@ -67,7 +81,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"001: {startingNumber}");
+            watch.Stop();
+            Console.WriteLine($"014: Starting number: {startingNumberWithLongestChain}, Chain length: {longestChain}");
+            Console.WriteLine($"Elapsed: {watch.Elapsed}");
         }
     }
 }
