@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
-using System.Threading.Tasks;
 
 namespace ProjectEuler
 {
-    public static class _012
+    public static class _012alt
     {
         // TITLE: Highly divisible triangular number
 
@@ -26,48 +25,60 @@ namespace ProjectEuler
         // OBJECTIVE: What is the value of the first triangle number to 
         //      have over five hundred divisors?
 
-        public static void DoWork(int numberOfDivisors)
+        public static void DoWork(int limit)
         {
             Stopwatch watch = new Stopwatch();
             watch.Start();
 
-            long triangleSum = 0;
-            int divisorCount;
+            int iteration = 0;
+            int runningSum = 0;
 
-            Parallel.For(1, long.MaxValue, (i, loopState) =>
+            for (int i = 0; iteration <= limit; i++)
             {
-                divisorCount = 0;
-                triangleSum += i;
-
-                if ((i >= numberOfDivisors) && (triangleSum % 2 == 0))
+                if (i % 2 == 0)
                 {
-                    divisorCount = CheckDivisorCount(triangleSum);
+                    iteration = Count(i / 2) * Count(i + 1);
+                }
+                else
+                {
+                    iteration = Count(i) * Count((i + 1) / 2);
                 }
 
-                if (divisorCount >= numberOfDivisors)
+                if (iteration > 500)
                 {
-                    loopState.Stop();
+                    iteration = i;
+                    break;
                 }
-            });
+            }
 
+            for (int i = 0; i <= iteration; i++)
+            {
+                runningSum += i;
+            }
+
+            Console.WriteLine($"012alt: {runningSum}");
             watch.Stop();
-            Console.WriteLine($"12: {triangleSum}");
             Console.WriteLine($"Elapsed: {watch.Elapsed}");
         }
 
-        public static int CheckDivisorCount(long valueToCheck)
+        public static int Count(int n)
         {
-            int numberOfDivisors = 0;
-            
-            for (long i = 1; i <= valueToCheck; i++)
-            {
-                if (valueToCheck % i == 0)
-                {
-                    numberOfDivisors++;
-                }
-            }            
+            int result = 0;
 
-            return numberOfDivisors;
+            for (int i = 1; i * i <= n; i++)
+            {
+                if (n % i == 0)
+                {
+                    result += 2;
+
+                    if (n / i == i)
+                    {
+                        result--;
+                    }
+                }
+            }
+
+            return result;
         }
     }
 }

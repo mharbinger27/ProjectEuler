@@ -41,6 +41,19 @@ namespace ProjectEuler
             int[ , ] gridNumbers = new int[gridSize, gridSize];
             string[] numbers = valueGrid.Split(" ");
             int arrayPosition = 0;
+            int largestMultiple = 0;
+            int currentValue = 0;
+
+            bool north;
+            bool south;
+            bool east;
+            bool west;
+
+            int value1;
+            int value2;
+            int value3;
+            int value4;
+            int multipliedValue;
 
             for (int i = 0; i < gridSize; i++)
             {
@@ -52,7 +65,132 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"010: {gridSize}");
+            // i = rows
+            for (int i = 0; i < gridSize; i++)
+            {
+                // j = columns
+                for (int j = 0; j < gridSize; j++)
+                {
+                    currentValue = gridNumbers[i, j];
+
+                    north = false;
+                    south = false;
+                    east = false;
+                    west = false;
+
+                    if (i >= 3)
+                    {
+                        north = true;
+                    }
+
+                    if (i <= 16)
+                    {
+                        south = true;
+                    }
+
+                    if (j <= 16)
+                    {
+                        east = true;
+                    }
+
+                    if (j >= 3)
+                    {
+                        west = true;
+                    }
+
+                    if (north)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i - 1, j, i - 2, j, i - 3, j);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (north && east)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i - 1, j + 1, i - 2, j + 2, i - 3, j + 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (east)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i, j + 1, i, j + 2, i, j + 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (south && east)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i + 1, j + 1, i + 2, j + 2, i + 3, j + 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (south)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i + 1, j, i + 2, j, i + 3, j);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (south && west)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i + 1, j - 1, i + 2, j - 2, i + 3, j - 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (west)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i, j - 1, i, j - 2, i, j - 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+
+                    if (north && west)
+                    {
+                        multipliedValue = FindProduct(gridNumbers, i, j, i - 1, j - 1, i - 2, j - 2, i - 3, j - 3);
+
+                        if (multipliedValue > largestMultiple)
+                        {
+                            largestMultiple = multipliedValue;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine($"011: {largestMultiple}");
+        }
+
+        public static int FindProduct(int[,] incomingArray, int i1 = 0, int j1 = 0, int i2 = 0, int j2 = 0, int i3 = 0, int j3 = 0, int i4 = 0, int j4 = 0)
+        {
+            int value1 = incomingArray[i1, j1];
+            int value2 = incomingArray[i2, j2];
+            int value3 = incomingArray[i3, j3];
+            int value4 = incomingArray[i4, j4];
+
+            return value1 * value2 * value3 * value4;
         }
     }
 }
