@@ -53,7 +53,7 @@ namespace ProjectEuler
                     _014.DoWork(1000000);
                     break;
                 case 015:
-                    _015.DoWork(20);
+                    _015.DoWork();
                     break;
                 default:
                     break;

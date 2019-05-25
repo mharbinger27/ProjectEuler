@@ -26,12 +26,12 @@ namespace ProjectEuler
             Stopwatch watch = new Stopwatch();
             watch.Start();
 
-            int changingNumber;
+            long changingNumber;
             int longestChain = 0;
             int startingNumberWithLongestChain = 1;
-            int recordedChainLength = 0;
+            int recordedChainLength;
 
-            Dictionary<int, int> calculatedValues = new Dictionary<int, int>();
+            Dictionary<long, int> calculatedValues = new Dictionary<long, int>();
 
             for (int startingNumber = 2; startingNumber < limit; startingNumber++)
             {
