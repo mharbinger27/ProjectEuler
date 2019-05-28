@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace ProjectEuler
 {
@@ -11,6 +12,9 @@ namespace ProjectEuler
 
         public static void DoWork(int numberLength)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             #region LongString
             string lottaNumbers = "37107287533902102798797998220837590246510135740250" +
                                     "46376937677490009712648124896970078050417018260538" +
@@ -131,7 +135,9 @@ namespace ProjectEuler
 
             string takeNumbers = sumValue.ToString().Substring(0, 10);
 
-            Console.WriteLine($"13: {takeNumbers}");
+            watch.Stop();
+
+            Console.WriteLine($"013: {takeNumbers} in {watch.Elapsed}");
         }
     }
 }

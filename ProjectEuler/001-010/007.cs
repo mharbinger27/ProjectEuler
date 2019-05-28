@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -15,6 +16,9 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             List<long> primesList = new List<long>();
             long currentValue = 1;
 
@@ -30,7 +34,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"007: {primesList[limit - 1]}");
+            watch.Stop();
+
+            Console.WriteLine($"007: {primesList[limit - 1]} in {watch.Elapsed}");
         }
 
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -15,6 +16,9 @@ namespace ProjectEuler
 
         public static void DoWork(int lessThan)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             int result = 0;
             int largestPalindrome = 0;
             int eightyPercent = (int)(lessThan * 0.8);
@@ -35,7 +39,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"004: {largestPalindrome}");
+            watch.Stop();
+
+            Console.WriteLine($"004: {largestPalindrome} in {watch.Elapsed}");
         }
 
         public static bool CheckForPalindrome(char[] inputArray)

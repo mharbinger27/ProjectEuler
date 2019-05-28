@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -20,6 +21,9 @@ namespace ProjectEuler
 
         public static void DoWork(int topValue)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             long sumOfSquares = 0;
             long squareOfSums = 0;
 
@@ -31,7 +35,9 @@ namespace ProjectEuler
 
             squareOfSums = (squareOfSums * squareOfSums);
 
-            Console.WriteLine($"006: {squareOfSums - sumOfSquares}");
+            watch.Stop();
+
+            Console.WriteLine($"006: {squareOfSums - sumOfSquares} in {watch.Elapsed}");
         }
     }
 }

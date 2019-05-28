@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -15,6 +16,9 @@ namespace ProjectEuler
 
         public static void DoWork(int power)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             string accumulatingValue = "1";
 
             for (int i = 1; i <= power; i++)
@@ -34,7 +38,9 @@ namespace ProjectEuler
             // save ints in new char array
             // convert char array to string
 
-            Console.WriteLine($"016: {accumulatingValue}");
+            watch.Stop();
+
+            Console.WriteLine($"016: {accumulatingValue} in {watch.Elapsed}");
         }
     }
 }

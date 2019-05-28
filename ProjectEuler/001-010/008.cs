@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -16,6 +17,9 @@ namespace ProjectEuler
 
         public static void DoWork()
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             bool breakFlag;
             int tempValue;
             long accumulatingValue = 1;
@@ -80,7 +84,9 @@ namespace ProjectEuler
 
             }
 
-            Console.WriteLine($"008: {largestValue}");
+            watch.Stop();
+
+            Console.WriteLine($"008: {largestValue} in {watch.Elapsed}");
         }
     }
 }

@@ -82,8 +82,8 @@ namespace ProjectEuler
             }
 
             watch.Stop();
-            Console.WriteLine($"014: Starting number: {startingNumberWithLongestChain}, Chain length: {longestChain}");
-            Console.WriteLine($"Elapsed: {watch.Elapsed}");
+
+            Console.WriteLine($"014: {startingNumberWithLongestChain} in {watch.Elapsed}");
         }
     }
 }

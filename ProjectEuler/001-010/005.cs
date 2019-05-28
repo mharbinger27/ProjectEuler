@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -16,6 +17,9 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             int smallestMultiple = 0;
             int multipleToCheck = 0;
 
@@ -40,7 +44,9 @@ namespace ProjectEuler
                 }
             } while (smallestMultiple == 0);
 
-            Console.WriteLine($"005: {smallestMultiple}");
+            watch.Stop();
+
+            Console.WriteLine($"005: {smallestMultiple} in {watch.Elapsed}");
         }
     }
 }

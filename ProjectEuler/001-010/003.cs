@@ -15,7 +15,11 @@ namespace ProjectEuler
 
         public static void DoWork(long targetNumber)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             List<long> potentialPrimes = new List<long>();
+            long finalPrime = 0;
 
             for (long i = 3; i < targetNumber; i += 2)
             {
@@ -42,10 +46,15 @@ namespace ProjectEuler
             {
                 if (Utilities.EvaluatePrime(potentialPrime))
                 {
-                    Console.WriteLine($"003: {potentialPrime}");
+                    finalPrime = potentialPrime;
                     break;
                 }
             }
+
+            watch.Stop();
+
+            Console.WriteLine($"003: {finalPrime} in {watch.Elapsed}");
+
         }
     }
 }

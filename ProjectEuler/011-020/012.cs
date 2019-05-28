@@ -51,8 +51,8 @@ namespace ProjectEuler
             });
 
             watch.Stop();
-            Console.WriteLine($"12: {triangleSum}");
-            Console.WriteLine($"Elapsed: {watch.Elapsed}");
+
+            Console.WriteLine($"12: {triangleSum} in {watch.Elapsed}");
         }
 
         public static int CheckDivisorCount(long valueToCheck)

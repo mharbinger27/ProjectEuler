@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace ProjectEuler
 {
@@ -15,6 +16,9 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             int sum = 0;
 
             for (int i = 0; i < limit; i++)
@@ -30,7 +34,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"001: {sum}");
+            watch.Stop();
+
+            Console.WriteLine($"001: {sum} in {watch.Elapsed}");
         }
     }
 }

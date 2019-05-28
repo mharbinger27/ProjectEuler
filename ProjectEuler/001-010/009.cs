@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -17,9 +18,13 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             int a = 0;
             int b = 0;
             int c = 0;
+            int solution = 0;
 
             for (int i = 3; i <= limit; i++)
             {
@@ -35,15 +40,17 @@ namespace ProjectEuler
                                 b = k;
                                 c = i;
 
-                                Console.WriteLine($"009: {a * b * c}");
-                                return;
+                                solution = a * b * c;
+                                break;
                             }
                         }
                     }
                 }
             }
 
-            Console.WriteLine($"009: {a * b * c}");
+            watch.Stop();
+
+            Console.WriteLine($"009: {a * b * c} in {watch.Elapsed}");
         }
     }
 }

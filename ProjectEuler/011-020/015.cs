@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -14,36 +15,44 @@ namespace ProjectEuler
 
         // OBJECTIVE: How many such routes are there through a 20×20 grid?
 
-        public static void DoWork()
+        public static void DoWork(int gridSize)
         {
-            int pathCount = 0;
-            string binary;
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
 
-            long limit = (long)Math.Pow(2, 40);
+            double pathCount;
+            double outputValue;
+            double numerator = 0;
+            double denomenator = 0;
 
-            for (long i = 1048575; i < limit; i++)
+            for (int i = 1; i <= (gridSize * 2); i++)
             {
-                binary = Convert.ToString(i, 2);
+                outputValue = Factorial((double)i);
 
-                //if (Convert.ToInt32(CountStringOccurrences(binary, "1")) == 20)
-                //{
-                //    pathCount++;
-                //}
+                if (i == gridSize)
+                {
+                    denomenator = outputValue;
+                }
+                else if (i == (gridSize * 2))
+                {
+                    numerator = outputValue;
+                }
             }
 
-            Console.WriteLine($"015: {pathCount}");
+            denomenator = Math.Pow(denomenator, 2);
+            pathCount = numerator / denomenator;
+
+            watch.Stop();
+
+            Console.WriteLine($"015: {pathCount} in {watch.Elapsed}");
         }
 
-        public static int CountStringOccurrences(string text, string pattern)
+        public static double Factorial(double inputValue)
         {
-            int count = 0;
-            int i = 0;
-            while ((i = text.IndexOf(pattern, i)) != -1)
-            {
-                i += pattern.Length;
-                count++;
-            }
-            return count;
+            if (inputValue == 1)
+                return 1;
+            else
+                return inputValue * Factorial(inputValue - 1);
         }
     }
 }

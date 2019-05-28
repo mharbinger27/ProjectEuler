@@ -56,9 +56,9 @@ namespace ProjectEuler
                 runningSum += i;
             }
 
-            Console.WriteLine($"012alt: {runningSum}");
             watch.Stop();
-            Console.WriteLine($"Elapsed: {watch.Elapsed}");
+
+            Console.WriteLine($"012alt: {runningSum} in {watch.Elapsed}");
         }
 
         public static int Count(int n)

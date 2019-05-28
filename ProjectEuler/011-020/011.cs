@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectEuler
@@ -18,6 +19,9 @@ namespace ProjectEuler
 
         public static void DoWork(int gridSize)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             string valueGrid =  "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08 " +
                                 "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00 " +
                                 "81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65 " +
@@ -180,7 +184,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"011: {largestMultiple}");
+            watch.Stop();
+
+            Console.WriteLine($"011: {largestMultiple} in {watch.Elapsed}");
         }
 
         public static int FindProduct(int[,] incomingArray, int i1 = 0, int j1 = 0, int i2 = 0, int j2 = 0, int i3 = 0, int j3 = 0, int i4 = 0, int j4 = 0)

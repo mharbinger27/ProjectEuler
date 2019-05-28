@@ -44,7 +44,7 @@ namespace ProjectEuler
                     _011.DoWork(20);
                     break;
                 case 012:
-                    _012.DoWork(501);
+                    _012alt.DoWork(501);
                     break;
                 case 013:
                     _013.DoWork(50);
@@ -53,7 +53,7 @@ namespace ProjectEuler
                     _014.DoWork(1000000);
                     break;
                 case 015:
-                    _015.DoWork();
+                    _015.DoWork(20);
                     break;
                 case 016:
                     _016.DoWork(1000);

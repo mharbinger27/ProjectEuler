@@ -15,6 +15,9 @@ namespace ProjectEuler
 
         public static void DoWork(int limit)
         {
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
+
             long sum = 2;
 
             for (int i = 3; i < limit; i += 2)
@@ -25,7 +28,9 @@ namespace ProjectEuler
                 }
             }
 
-            Console.WriteLine($"010: {sum}");
+            watch.Stop();
+
+            Console.WriteLine($"010: {sum} in {watch.Elapsed}");
         }
     }
 }
