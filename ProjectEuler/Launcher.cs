@@ -10,6 +10,7 @@ namespace ProjectEuler
         {
             switch (challengeNumber)
             {
+                #region Problems 001-010
                 case 001:
                     _001.DoWork(1000);
                     break;
@@ -40,6 +41,8 @@ namespace ProjectEuler
                 case 010:
                     _010.DoWork(2000000);
                     break;
+                #endregion
+                #region Problems 011-020
                 case 011:
                     _011.DoWork(20);
                     break;
@@ -58,6 +61,7 @@ namespace ProjectEuler
                 case 016:
                     _016.DoWork(1000);
                     break;
+                #endregion
                 default:
                     break;
             }
